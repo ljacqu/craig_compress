@@ -1,8 +1,9 @@
 <?php
 
-// idea: we only deal with [0-9] + '.' and '-' ==> total of 12 different symbols
-// This requires 4 bits to represent all -> 2^4 = 16 possibilities
-// A byte has 8 bits so just "cram" two digits into the byte
+// idea: we only deal with 0-9 and some other symbols
+// We only require 4 bits to represent them -> 2^4 = 16 possibilities
+// A byte has 8 bits so we just "cram" two digits into each byte
+
 class TwoDigitByte implements CompressionMethod {
 
   const PADDING = 15;
@@ -42,17 +43,17 @@ class TwoDigitByte implements CompressionMethod {
     return $result;
   }
   
-  // Convert the character to its code -> 0-9 is trivially 0-9; '.' -> 10, '-' -> 11
+  // Converts a character to its numeric code
   private function charToCode($char) {
     if (preg_match('/\\d/', $char)) {
       return (int) $char;
     } else if (isset(self::$codes[$char])) {
       return self::$codes[$char];
     }
-    var_dump(self::$codes);
     throw new Exception('Unknown character "' . htmlspecialchars($char) . '"');
   }
-  
+
+  // Converts a code to the character it stands for
   private function codeToChar($code) {
     if ($code < 10) {
       return (string) $code;
