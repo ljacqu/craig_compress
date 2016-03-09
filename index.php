@@ -5,9 +5,10 @@ $test_numbers = [
 
 require 'CompressionMethod.php';
 require 'Gzip.php';
+require 'TwoDigitByte.php';
 
 $compression_methods = [
-  new Gzip()
+  new Gzip(), new TwoDigitByte()
 ];
 
 
