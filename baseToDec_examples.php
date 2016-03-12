@@ -32,7 +32,7 @@ class Ex {
 
   function __construct($base, $value, $expectedDec) {
     $this->base = $base;
-	$this->value = $value;
-	$this->expectedDec = $expectedDec;
+    $this->value = $value;
+    $this->expectedDec = $expectedDec;
   }
 }

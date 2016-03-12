@@ -23,15 +23,15 @@ class BaseToDec {
     $result = 0;
     for ($i = 0; $i < strlen($input); ++$i) {
       if ($input[$i] === '.') {
-	    continue;
-	  }
+        continue;
+      }
       $result += $this->digitToValue($input[$i]) * pow($base, $exponent);
-	  --$exponent;
+      --$exponent;
     }
     return $result;
   }
 
   private function digitToValue($char) {
-	return $this->chars[$char];
+    return $this->chars[$char];
   }
 }
